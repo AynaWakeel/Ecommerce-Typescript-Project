@@ -1,14 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import ShopItems from './components/items';
+import AppRoutes from './app-routes';
 
 function App() {
   
   return (
     <div>
 
-      <ShopItems/>
+      <AppRoutes/>
       
     </div>
   );

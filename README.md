@@ -403,3 +403,88 @@ r phir apk pass woho methos show hongy jo type ha
 * const MyBtn : React.FC
 
 ## --------------------------------------- handle props
+
+jha use krna ha:
+
+      <ShopItems name="hello"/>
+
+jha bnana ha:
+
+import React from 'react'
+
+interface ItemsProps {
+    name: string;
+    price?: number;
+}
+
+const ShopItems: React.FC<ItemsProps> = (props) => {
+  return (
+    <div>ShopItems
+        <h1>{props.name}</h1>
+    </div>
+  )
+}
+
+export default ShopItems
+
+
+# ------------------------------------------ useState hooks
+
+import React, { useState } from 'react'
+
+const ShopItems: React.FC = () => {
+    const [value, setValue] = useState<string>("")
+
+    const handleChange = (e : React.ChangeEvent<HTMLInputElement>) =>{
+          setValue(e.target.value)
+    }
+
+    return (
+    <div>ShopItems
+        <h1>form</h1>
+        <input onChange={handleChange} type='text'/>
+        <p>value:{value}</p>
+        
+    </div>
+  )
+}
+
+export default ShopItems
+
+# --------------------------------------------- handle form
+
+import React, { useState } from 'react'
+
+const ShopItems: React.FC = () => {
+    const [value, setValue] = useState<string>("")
+
+    const handleChange = (e : React.ChangeEvent<HTMLInputElement>) =>{
+        setValue(e.target.value)
+    }
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=>{
+        e.preventDefault()
+        console.log("hello");
+        
+    }
+
+    return (
+    <div>
+
+        <form onSubmit={handleSubmit}>
+        <h1>form</h1>
+        <input onChange={handleChange} type='text' value={value}/>
+        <p>value:{value}</p>
+        <button type='submit'>Submit</button>
+
+        </form>
+    </div>
+  )
+}
+
+export default ShopItems
+
+
+## ----------------------------------------- i've installed tailwindcss with
+
+npm install -D tailwindcss postcss autoprefixer
