@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <div>
       
       <div className='bg-white px-6 md:px-14 xl:px-20 pt-5 lg:pt-10'>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 py-8'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-10 py-8'>
          
           <div>
             <p className='text-base text-[#9F9F9F] font-normal font-poppins'>400 University Drive Suite 200 Coral Gables,

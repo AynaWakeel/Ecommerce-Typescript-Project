@@ -6,6 +6,7 @@ import Contact from '../pages/contact'
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
 import { Route, Routes } from 'react-router'
+import MyAccount from '../pages/account'
 
 const AppRoutes: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const AppRoutes: React.FC = () => {
             <Route path='/shop' element={<Shop/>}/>
             <Route path='/about' element={<About/>}/>
             <Route path='/contact' element={<Contact/>}/>
+            <Route path='/myaccount' element={<MyAccount/>}/>
 
         </Routes>
         

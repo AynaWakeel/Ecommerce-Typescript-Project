@@ -24,16 +24,16 @@ const Navbar: React.FC = () => {
 
           <div>
             <ul className='hidden  lg:flex justify-between items-center gap-10 px-10'>
-              <li>
+              <li onClick={()=>navigate('/myaccount')} className='cursor-pointer'>
                 <img src={user} alt='img1' className='w-5' />
               </li>
-              <li>
+              <li  className='cursor-pointer'>
                 <img src={search} alt='img2' className='w-5' />
               </li>
-              <li>
+              <li  className='cursor-pointer'>
                 <img src={heart} alt='img3' className='w-5' />
               </li>
-              <li>
+              <li  className='cursor-pointer'>
                 <img src={cart} alt='img4' className='w-5' />
               </li>
             </ul>
