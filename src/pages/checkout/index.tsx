@@ -1,7 +1,8 @@
 import React from 'react'
 import cover from '../../assets/images/Rectangle 1.png'
-import arrow from '../../assets/icons/dashicons_arrow-down-alt2.svg'
 import logo from '../../assets/icons/Meubel House_Logos-05.svg'
+import arrow from '../../assets/icons/dashicons_arrow-down-alt2.svg'
+import arrowdown from '../../assets/icons/dashicons_arrow-down-alt2 (1).svg'
 import circle from '../../assets/icons/Ellipse 1.svg'
 
 const Checkout: React.FC = () => {
@@ -23,25 +24,20 @@ const Checkout: React.FC = () => {
             </div>
 
             {/* ---------------- form --------------- */}
-            <div className='px-14 py-5 lg:py-10 flex flex-col justify-center items-center'>
-                <div className='text-center w-full lg:w-1/2'>
-                    <h1 className='text-xl md:text-2xl lg:text-4xl font-poppins font-medium'>Get In Touch With Us</h1>
-                    <p className='text-xs md:text-sm lg:text-base font-poppins font-medium text-gray-400 pt-3'>For More Information About Our Product & Services. Please Feel Free To Drop Us An Email. Our Staff Always Be There To Help You Out. Do Not Hesitate!</p>
-                </div>
-            </div>
-            <div className=' px-6 md:px-14 xl:px-40 py-8 lg:py-10 flex flex-col lg:flex-row justify-between items-start gap-20'>
-               
-                <div className='w-full lg:w-1/2'>
-                    <h2 className='text-2xl lg:text-3xl xl:text-4xl font-semibold font-poppins pb-8'>Billing Details</h2>
 
-                    <div className='flex justify-between gap-6 items-center pb-5 lg:pb-10 '>
-                        <div>
+            <div className=' px-6 md:px-14 xl:px-40 py-8 lg:py-10 flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-20'>
+
+                <div className='w-full lg:w-1/2'>
+                    <h2 className='text-2xl lg:text-3xl xl:text-4xl font-semibold font-poppins pb-14'>Billing Details</h2>
+
+                    <div className='flex gap-2 xl:gap-6 items-center pb-5 lg:pb-10 '>
+                        <div className='flex-1'>
                             <label htmlFor="" className='text-sm lg:text-base font-medium font-poppins pb-4 block'>First Name</label>
-                            <input type='text' className='h-14 w-[270px] px-5 rounded-xl border-[1px] border-[#9F9F9F] outline-none' />
+                            <input type='text' className='h-14 w-full px-5 rounded-xl border-[1px] border-[#9F9F9F] outline-none' />
                         </div>
-                        <div>
+                        <div className='flex-1'>
                             <label htmlFor="" className='text-sm lg:text-base font-medium font-poppins pb-4 block'>Last Name</label>
-                            <input type='text' className='h-14 w-[270px] px-5 rounded-xl border-[1px] border-[#9F9F9F] outline-none' />
+                            <input type='text' className='h-14 w-full px-5 rounded-xl border-[1px] border-[#9F9F9F] outline-none' />
                         </div>
 
                     </div>
@@ -51,7 +47,16 @@ const Checkout: React.FC = () => {
                     </div>
                     <div className='pb-5 lg:pb-10'>
                         <label htmlFor="" className='text-sm lg:text-base font-medium font-poppins pb-4 block'>Country / Region</label>
-                        <input type='text' className='h-14 w-full px-5 rounded-xl border-[1px] border-[#9F9F9F] outline-none' placeholder='Sri Lanka' />
+                       
+                         <div className='relative'>
+                        <select name="" id="" className='appearance-none h-14 w-full px-5 rounded-xl border-[1px] border-[#9F9F9F] outline-none text-base font-poppins font-normal text-[#9F9F9F]'>
+                            <option selected>Sri Lanka</option>
+                            <option>Pakistan</option>
+                            <option>India</option>
+                            <option>China</option>
+                        </select>
+                            <img src={arrowdown} alt='down' className='pointer-events-none absolute top-5 right-4'/>
+                        </div>
                     </div>
                     <div className='pb-5 lg:pb-10'>
                         <label htmlFor="" className='text-sm lg:text-base font-medium font-poppins pb-4 block'>Street address</label>
@@ -63,7 +68,15 @@ const Checkout: React.FC = () => {
                     </div>
                     <div className='pb-5 lg:pb-8'>
                         <label htmlFor="" className='text-sm lg:text-base font-medium font-poppins pb-4 block'>Province</label>
-                        <input type='text' className='h-14 w-full px-5 rounded-xl border-[1px] border-[#9F9F9F] outline-none' placeholder='Western Province' />
+                        <div className='relative'>
+                        <select name="" id="" className='appearance-none h-14 w-full px-5 rounded-xl border-[1px] border-[#9F9F9F] outline-none text-base font-poppins font-normal text-[#9F9F9F]'>
+                            <option selected>Western Province</option>
+                            <option>East</option>
+                            <option>North</option>
+                            <option>South</option>
+                        </select>
+                            <img src={arrowdown} alt='down' className='pointer-events-none absolute top-5 right-4'/>
+                        </div>
                     </div>
                     <div className='pb-5 lg:pb-10'>
                         <label htmlFor="" className='text-sm lg:text-base font-medium font-poppins pb-4 block'>Zip Code</label>
@@ -84,28 +97,46 @@ const Checkout: React.FC = () => {
 
                 </div>
 
-                 <div className='w-full lg:w-1/2'>
-                    <div className='flex justify-start items-start gap-6'>
-                       
-                        <div>
-                            <h3 className='text-lg lg:text-xl xl:text-2xl font-medium font-poppins'>Product</h3>
-                            <p className='text-sm lg:text-base font-poppins font-normal text-black w-full xl:w-4/5 text-justify'>United States</p>
-                        </div>
-                         <div>
-                            <h3 className='text-lg lg:text-xl xl:text-2xl font-medium font-poppins'>Product</h3>
-                            <p className='text-sm lg:text-base font-poppins font-normal text-black w-full xl:w-4/5 text-justify'>United States</p>
-                        </div>
+                <div className='w-full lg:w-1/2 lg:mt-12'>
+                    <div className='flex justify-between pb-4'>
+                        <h3 className='text-lg lg:text-xl xl:text-2xl font-medium font-poppins'>Product</h3>
+                        <h3 className='text-lg lg:text-xl xl:text-2xl font-medium font-poppins'>Subtotal</h3>
                     </div>
-                    <div className='pt-3 border-t-[1px] border-[#D9D9D9]'>
+
+                    <div className='flex justify-between pb-4'>
+                        <div className='flex justify-start gap-2'>
+                            <span className='text-sm lg:text-base font-poppins font-normal text-[#9F9F9F] text-justify'>Asgaard sofa</span>
+                            <span className='text-sm lg:text-base font-poppins font-normal text-black text-justify'>X 1</span>
+                        </div>
+                        <span className='text-sm lg:text-base font-poppins font-light text-black  text-justify'>Rs. 250,000.00</span>
+                    </div>
+                    <div className='flex justify-between pb-4'>
+                        <h4 className='text-sm lg:text-base font-poppins font-normal text-black text-justify'>Subtotal</h4>
+                        <p className='text-sm lg:text-base font-poppins font-light text-black text-justify'>Rs. 250,000.00</p>
+                    </div>
+                    <div className='flex justify-between pb-6'>
+                        <h4 className='text-sm lg:text-base font-poppins font-normal text-black text-justify'>Total</h4>
+                        <p className='text-lg md:text-xl lg:text-2xl font-poppins font-bold text-[#B88E2F] text-justify'>Rs. 250,000.00</p>
+                    </div>
+
+                    <div className='pt-4 border-t-[1px] border-[#D9D9D9]'>
                         <div className='flex justify-start items-center gap-3'>
-                            <img src={circle} alt='icon'/>
+                            <img src={circle} alt='icon' />
                             <h4 className='text-base font-poppins font-normal'>Direct Bank Transfer</h4>
                         </div>
-                        <p className='pt-4 text-sm lg:text-base font-poppins font-light text-gray-400 w-full xl:w-4/5 text-justify'>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</p>
+                        <p className='pt-4 text-sm lg:text-base font-poppins font-light text-gray-400 text-justify'>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</p>
+                        <div className='pt-4'>
+                            <input type='radio' />
+                            <label htmlFor="" className='pt-4 text-sm lg:text-base font-poppins font-light text-gray-400 pl-3'>Direct Bank Transfer</label>
+                        </div>
+                        <div className='pt-2'>
+                            <input type='radio' />
+                            <label htmlFor="" className='pt-4 text-sm lg:text-base font-poppins font-light text-gray-400 pl-3'>Cash On Delivery</label>
+                        </div>
                     </div>
-                    <div>
-                        <p className='py-6 text-sm lg:text-base font-poppins font-light text-black w-full xl:w-4/5 text-justify'>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our 
-                        <span className='text-sm lg:text-base font-poppins font-semibold'> privacy policy.</span>
+                    <div className='flex flex-col items-center'>
+                        <p className='py-6 text-sm lg:text-base font-poppins font-light text-black text-justify'>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our
+                            <span className='text-sm lg:text-base font-poppins font-semibold'> privacy policy.</span>
                         </p>
                         <button className='text-base lg:text-xl font-poppins font-normal text-black rounded-xl border-[1px] border-black h-14 w-44'>Place order</button>
 

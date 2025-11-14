@@ -7,8 +7,8 @@ import item4 from '../../assets/images/Mask group (3).png'
 const SingleProduct = () => {
   return (
     <div>
-        
-        {/* ----------- 3rd sec ------------- */}
+
+      {/* ----------- 3rd sec ------------- */}
       <div className='flex flex-col justify-between items-center gap-4 lg:gap-10 px-6 md:px-14 xl:px-40 py-8 lg:py-10 xl:py-16'>
 
         <div className=' text-center'>

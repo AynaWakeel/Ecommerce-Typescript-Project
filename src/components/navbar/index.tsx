@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
               <li  className='cursor-pointer'>
                 <img src={heart} alt='img3' className='w-5' />
               </li>
-              <li  onClick={()=>navigate('/checkout')}  className='cursor-pointer'>
+              <li  onClick={()=>navigate('/cart')}  className='cursor-pointer'>
                 <img src={cart} alt='img4' className='w-5' />
               </li>
             </ul>

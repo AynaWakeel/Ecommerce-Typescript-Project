@@ -9,6 +9,7 @@ import { Route, Routes } from 'react-router'
 import MyAccount from '../pages/account'
 import Checkout from '../pages/checkout'
 import SingleProduct from '../pages/single-product'
+import Cart from '../pages/cart'
 
 const AppRoutes: React.FC = () => {
   return (
@@ -19,12 +20,13 @@ const AppRoutes: React.FC = () => {
         <Routes>
 
             <Route path='/' element={<Home/>}/>
+            <Route path='/about' element={<About/>}/>
             <Route path='/shop' element={<Shop/>}/>
             <Route path='/single-product' element={<SingleProduct/>}/>
-            <Route path='/about' element={<About/>}/>
+            <Route path='/cart' element={<Cart/>}/>
+            <Route path='/checkout' element={<Checkout/>}/>
             <Route path='/contact' element={<Contact/>}/>
             <Route path='/myaccount' element={<MyAccount/>}/>
-            <Route path='/checkout' element={<Checkout/>}/>
 
         </Routes>
         
