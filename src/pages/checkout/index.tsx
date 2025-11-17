@@ -10,7 +10,7 @@ const Checkout: React.FC = () => {
         <div>
 
             {/* ----------- header ----------- */}
-            <div className='relative'>
+            <div className='relative mt-20'>
                 <img src={cover} alt='cover' className='max-md:h-56 w-full' />
                 <div className='absolute inset-0 flex flex-col justify-center items-center'>
                     <img src={logo} alt='icon' className='max-lg:w-16' />
@@ -105,18 +105,18 @@ const Checkout: React.FC = () => {
 
                     <div className='flex justify-between pb-4'>
                         <div className='flex justify-start gap-2'>
-                            <span className='text-sm lg:text-base font-poppins font-normal text-[#9F9F9F] text-justify'>Asgaard sofa</span>
-                            <span className='text-sm lg:text-base font-poppins font-normal text-black text-justify'>X 1</span>
+                            <span className='text-sm lg:text-base font-poppins font-normal text-[#9F9F9F] '>Asgaard sofa</span>
+                            <span className='text-sm lg:text-base font-poppins font-normal text-black'>X 1</span>
                         </div>
-                        <span className='text-sm lg:text-base font-poppins font-light text-black  text-justify'>Rs. 250,000.00</span>
+                        <span className='text-sm lg:text-base font-poppins font-light text-black '>Rs. 250,000.00</span>
                     </div>
                     <div className='flex justify-between pb-4'>
-                        <h4 className='text-sm lg:text-base font-poppins font-normal text-black text-justify'>Subtotal</h4>
-                        <p className='text-sm lg:text-base font-poppins font-light text-black text-justify'>Rs. 250,000.00</p>
+                        <h4 className='text-sm lg:text-base font-poppins font-normal text-black'>Subtotal</h4>
+                        <p className='text-sm lg:text-base font-poppins font-light text-black'>Rs. 250,000.00</p>
                     </div>
                     <div className='flex justify-between pb-6'>
-                        <h4 className='text-sm lg:text-base font-poppins font-normal text-black text-justify'>Total</h4>
-                        <p className='text-lg md:text-xl lg:text-2xl font-poppins font-bold text-[#B88E2F] text-justify'>Rs. 250,000.00</p>
+                        <h4 className='text-sm lg:text-base font-poppins font-normal text-black'>Total</h4>
+                        <p className='text-lg md:text-xl lg:text-2xl font-poppins font-bold text-[#B88E2F]'>Rs. 250,000.00</p>
                     </div>
 
                     <div className='pt-4 border-t-[1px] border-[#D9D9D9]'>

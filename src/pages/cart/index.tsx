@@ -12,7 +12,7 @@ const Cart: React.FC = () => {
         <div>
 
             {/* ----------- header ----------- */}
-            <div className='relative'>
+            <div className='relative mt-20'>
                 <img src={cover} alt='cover' className='max-md:h-56 w-full' />
                 <div className='absolute inset-0 flex flex-col justify-center items-center'>
                     <img src={logo} alt='icon' className='max-lg:w-16' />
@@ -20,7 +20,7 @@ const Cart: React.FC = () => {
                     <div className='pt-0 lg:pt-3 flex justify-center items-center'>
                         <span className='text-sm lg:text-base font-poppins font-medium text-black px-2'>Home</span>
                         <img src={arrow} alt='arrow' />
-                        <span className='text-sm lg:text-base font-poppins font-light text-black px-2'>Checkout</span>
+                        <span className='text-sm lg:text-base font-poppins font-light text-black px-2' onClick={()=>navigate('/checkout')}>Checkout</span>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@ const MyAccount: React.FC = () => {
         <div>
 
             {/* ----------- header ----------- */}
-            <div className='relative'>
+            <div className='relative mt-20'>
                 <img src={cover} alt='cover' className='max-md:h-56 w-full' />
                 <div className='absolute inset-0 flex flex-col justify-center items-center'>
                     <img src={logo} alt='icon' className='max-lg:w-16' />

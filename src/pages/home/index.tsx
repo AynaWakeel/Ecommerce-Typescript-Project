@@ -13,17 +13,19 @@ import blog3 from '../../assets/images/Rectangle 15.png'
 import coverImg from '../../assets/images/Group 43.png'
 import calender from '../../assets/icons/uil_calender.svg'
 import clock from '../../assets/icons/Group.svg'
+import { useNavigate } from 'react-router'
 
 const Home: React.FC = () => {
+  const navigate = useNavigate()
   return (
     <div>
 
       {/* ------------- 1st sec --------------- */}
 
-      <div className='flex justify-between items-center bg-[#FBEBB5] px-6 md:px-14 xl:px-40 py-5 lg:py-0'>
+      <div className='flex justify-between items-center bg-[#FBEBB5] px-6 md:px-14 xl:px-40 pb-5 pt-24 lg:pt-20'>
         <div>
           <h1 className='text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-poppins font-medium '>Rocket single seater</h1>
-          <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-lg 2xl:text-2xl mt-4 md:mt-6 xl:mt-10 pb-2 border-b-2 border-black outline-none'>Shop Now</button>
+          <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-lg 2xl:text-2xl mt-4 md:mt-6 xl:mt-10 pb-2 border-b-2 border-black outline-none' onClick={()=>navigate('/shop')}>Shop Now</button>
         </div>
         <div className='max-md:hidden max-sm:hidden md:w-2/4 lg:w-1/2'>
           <img src={Sofa} alt='sofa' />
@@ -37,14 +39,14 @@ const Home: React.FC = () => {
           <img src={Table} alt='sofa' className='w-4/5' />
           <div className='absolute bottom-0 lg:bottom-3xl xl:bottom-8'>
             <h1 className='text-xl md:text-2xl lg:text-4xl font-poppins font-medium '>Side Table</h1>
-            <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl md:mt-4 md:pb-2 border-b-2 border-black outline-none'>View More</button>
+            <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl md:mt-4 md:pb-2 border-b-2 border-black outline-none'  onClick={()=>navigate('/shop')}>View More</button>
           </div>
         </div>
         <div className='relative'>
           <img src={CloudSofa} alt='sofa' className='w-4/5' />
           <div className='absolute bottom-0 lg:bottom-3 xl:bottom-8'>
             <h1 className='text-xl md:text-2xl lg:text-4xl font-poppins font-medium '>Side Table</h1>
-            <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl md:mt-4 md:pb-2 border-b-2 border-black outline-none'>View More</button>
+            <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl md:mt-4 md:pb-2 border-b-2 border-black outline-none'  onClick={()=>navigate('/shop')}>View More</button>
           </div>
         </div>
       </div>
@@ -88,7 +90,7 @@ const Home: React.FC = () => {
 
         </div>
         <div>
-          <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-xl mt-10 md:pb-2 border-b-2 border-black'>View More</button>
+          <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-xl mt-10 md:pb-2 border-b-2 border-black' onClick={()=>navigate('/shop')}>View More</button>
         </div>
       </div>
 
@@ -101,7 +103,7 @@ const Home: React.FC = () => {
         <div className='text-center'>
           <h1 className='text-base lg:text-lg xl:text-2xl font-poppins font-medium '>New Arrivals</h1>
           <h1 className='text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-poppins font-bold '>Asgaard sofa</h1>
-          <button className='font-normal font-poppins text-black text-sm md:text-base lg:text-lg xl:text-xl mt-4 md:mt-6 xl:mt-10 py-2 px-10 border-2 border-black'>Order Now</button>
+          <button className='font-normal font-poppins text-black text-sm md:text-base lg:text-lg xl:text-xl mt-4 md:mt-6 xl:mt-10 py-2 px-10 border-2 border-black' onClick={()=>navigate('/shop')}>Order Now</button>
         </div>
       </div>
 
@@ -119,7 +121,7 @@ const Home: React.FC = () => {
             <img src={blog1} alt='sofa' />
             <div className='text-center pt-4'>
               <h6 className='text-base font-poppins font-normal text-black'>Going all-in with millennial design</h6>
-               <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl mt-2 pb-2 border-b-2 border-black outline-none'>Read More</button>
+               <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl mt-2 pb-2 border-b-2 border-black outline-none' onClick={()=>navigate('/about')}>Read More</button>
                <div className='flex justify-center items-center gap-3 pt-5'>
                 <div className='flex items-center gap-2'>
                   <img src={clock} alt='icon' />
@@ -136,7 +138,7 @@ const Home: React.FC = () => {
             <img src={blog2} alt='sofa' />
             <div className='text-center pt-4'>
               <h6 className='text-base font-poppins font-normal text-black'>Going all-in with millennial design</h6>
-              <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl mt-2  pb-2 border-b-2 border-black outline-none'>Read More</button>
+              <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl mt-2  pb-2 border-b-2 border-black outline-none'  onClick={()=>navigate('/about')}>Read More</button>
               <div className='flex justify-center items-center gap-3 pt-5'>
                 <div className='flex items-center gap-2'>
                   <img src={clock} alt='icon' />
@@ -153,7 +155,7 @@ const Home: React.FC = () => {
             <img src={blog3} alt='sofa' />
             <div className='text-center pt-4'>
               <h6 className='text-base font-poppins font-normal text-black'>Going all-in with millennial design</h6>
-              <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl mt-2 pb-2 border-b-2 border-black outline-none'>Read More</button>
+              <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl mt-2 pb-2 border-b-2 border-black outline-none' onClick={()=>navigate('/about')}>Read More</button>
               <div className='flex justify-center items-center gap-3 pt-5'>
                 <div className='flex items-center gap-2'>
                   <img src={clock} alt='icon' />
@@ -169,7 +171,7 @@ const Home: React.FC = () => {
 
         </div>
         <div>
-          <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-xl mt-10 md:pb-2 border-b-2 border-black outline-none'>View All Post</button>
+          <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-xl mt-10 md:pb-2 border-b-2 border-black outline-none' onClick={()=>navigate('/about')}>View All Post</button>
         </div>
       </div>
 

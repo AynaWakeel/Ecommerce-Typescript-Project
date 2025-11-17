@@ -1,8 +1,64 @@
 import React from 'react'
+import sofa from '../../assets/images/Asgaard sofa 1.png'
+import bag from '../../assets/icons/shopping_bag.svg'
+import close from '../../assets/icons/cancel.svg'
+import { useNavigate } from 'react-router';
 
-const Popup = () => {
+type Props = {
+  closePopup: () => void;
+};
+
+const Popup: React.FC<Props> = ({ closePopup }) => {
+  const navigate = useNavigate()
   return (
-    <div>Popup</div>
+    <div>
+      <div className='fixed inset-0 bg-black/40 z-40' onClick={closePopup}>
+      </div>
+
+      <div className='w-1/4 h-auto py-5 px-4 bg-white fixed top-0 right-0 border border-2 shadow-xl z-50 '>
+        <div className='border border-b-[1px] border-x-0 border-t-0 border-gray-300 pb-4'>
+          <div className='flex justify-between items-center'>
+            <h3 className='text-2xl font-poppins font-medium text-black'>Shopping Cart</h3>
+            <img src={bag} alt='img' />
+          </div>
+        </div>
+        <div className='h-96 py-4'>
+           {/*  ------------ per item in cart ---------- */}
+          <div className='flex justify-between items-center '>
+            <div className='flex justify-start items-center gap-4'>
+              <div className='rounded-md bg-[#FBEBB5] h-auto w-28'>
+                <img src={sofa} alt='img' className='h-auto w-full' />
+              </div>
+              <div className='flex flex-col'>
+                <div>
+                  <span className='text-sm lg:text-base font-poppins font-normal text-[#9F9F9F] '>Asgaard sofa</span>
+                </div>
+                <div className='flex justify-start gap-2'>
+                  <span className='text-sm lg:text-base font-poppins font-normal text-black'>1 X</span>
+                  <span className='text-sm lg:text-base font-poppins font-normal text-[#B88E2F]'>Rs. 250,000.00</span>
+                </div>
+              </div>
+
+            </div>
+            <div>
+              <img src={close} alt='img' />
+            </div>
+
+          </div>
+
+        </div>
+
+        <div className='flex justify-between py-3'>
+          <h4 className='text-sm lg:text-base font-poppins font-normal text-black text-justify'>Subtotal</h4>
+          <p className='text-base md:text-lg lg:text-xl font-poppins font-bold text-[#B88E2F]'>Rs. 250,000.00</p>
+        </div>
+        <div className='flex justify-start items-center gap-14 border border-t-[1px] border-x-0 border-b-0 border-gray-300 pt-4'>
+          <button className='text-sm font-poppins font-normal text-black rounded-3xl border-[1px] border-black py-2 px-4' onClick={()=>navigate('/cart')}>View Cart</button>
+          <button className='text-sm font-poppins font-normal text-black rounded-3xl border-[1px] border-black py-2 px-4' onClick={()=>navigate('/checkout')}>Checkout</button>
+        </div>
+
+      </div>
+    </div>
   )
 }
 

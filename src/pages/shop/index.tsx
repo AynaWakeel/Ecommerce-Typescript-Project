@@ -21,12 +21,14 @@ import item13 from '../../assets/images/Mask group.png'
 import item14 from '../../assets/images/SJP_0825  1.png'
 import item15 from '../../assets/images/Grain coffee.png'
 import item16 from '../../assets/images/Bella chair.png'
+import { useNavigate } from 'react-router'
 
 const Shop: React.FC = () => {
+  const navigate = useNavigate()
   return (
     <div>
       {/* ----------- header ----------- */}
-      <div className='relative'>
+      <div className='relative mt-20'>
         <img src={cover} alt='cover' className='max-md:h-56 w-full'/>
         <div className='absolute inset-0 flex flex-col justify-center items-center'>
           <img src={logo} alt='icon' className='max-lg:w-16'/>
@@ -68,7 +70,7 @@ const Shop: React.FC = () => {
        <div className='flex flex-col justify-between items-center gap-4 lg:gap-10 px-6 md:px-14 xl:px-40 py-4'>
 
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-          <div>
+          <div  onClick={()=>navigate('/single-product')} className='cursor-pointer'>
             <img src={item1} alt='sofa' />
             <div>
               <h6 className='text-base font-poppins font-normal '>Trenton modular sofa_3</h6>
