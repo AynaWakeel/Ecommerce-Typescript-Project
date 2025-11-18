@@ -5,25 +5,26 @@ import logo from '../../assets/icons/Meubel House_Logos-05.svg'
 import dot from '../../assets/icons/ci_grid-big-round.svg'
 import list from '../../assets/icons/bi_view-list.svg'
 import filter from '../../assets/icons/system-uicons_filtering.svg'
-import item1 from '../../assets/images/Mask group4.png'
-import item2 from '../../assets/images/Mask group (1).png'
-import item3 from '../../assets/images/Mask group (2).png'
-import item4 from '../../assets/images/Mask group (3).png'
-import item5 from '../../assets/images/Plain console_ 1.png'
-import item6 from '../../assets/images/Reclaimed teak.png'
-import item7 from '../../assets/images/Maya sofa three seater 1.png'
-import item8 from '../../assets/images/Outdoor sofa.png'
-import item9 from '../../assets/images/Kent coffee table 1.png'
-import item10 from '../../assets/images/Asgaard sofa 1.png'
-import item11 from '../../assets/images/Round coffee.png'
-import item12 from '../../assets/images/Sideboard.png'
-import item13 from '../../assets/images/Mask group.png'
-import item14 from '../../assets/images/SJP_0825  1.png'
-import item15 from '../../assets/images/Grain coffee.png'
-import item16 from '../../assets/images/Bella chair.png'
+// import item1 from '../../assets/images/Mask group4.png'
+// import item2 from '../../assets/images/Mask group (1).png'
+// import item3 from '../../assets/images/Mask group (2).png'
+// import item4 from '../../assets/images/Mask group (3).png'
+// import item5 from '../../assets/images/Plain console_ 1.png'
+// import item6 from '../../assets/images/Reclaimed teak.png'
+// import item7 from '../../assets/images/Maya sofa three seater 1.png'
+// import item8 from '../../assets/images/Outdoor sofa.png'
+// import item9 from '../../assets/images/Kent coffee table 1.png'
+// import item10 from '../../assets/images/Asgaard sofa 1.png'
+// import item11 from '../../assets/images/Round coffee.png'
+// import item12 from '../../assets/images/Sideboard.png'
+// import item13 from '../../assets/images/Mask group.png'
+// import item14 from '../../assets/images/SJP_0825  1.png'
+// import item15 from '../../assets/images/Grain coffee.png'
+// import item16 from '../../assets/images/Bella chair.png'
 import { useNavigate } from 'react-router'
+import { products } from '../../data/products'
 
-const Shop: React.FC = () => {
+const Shop = () => {
   const navigate = useNavigate()
   return (
     <div>
@@ -70,6 +71,22 @@ const Shop: React.FC = () => {
        <div className='flex flex-col justify-between items-center gap-4 lg:gap-10 px-6 md:px-14 xl:px-40 py-4'>
 
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+          {products.map((items)=>(
+
+          <div className='cursor-pointer h-96 flex flex-col justify-center items-start' onClick={()=>navigate(`single-product/${items.id}`)}>
+            <div className='h-72 flex justify-center items-center'>
+              <img src={items.image} alt='sofa' className='w-full h-auto'/>
+            </div>
+            <div>
+              <h6 className='text-base font-poppins font-normal '>{items.name}</h6>
+              <h5 className='font-medium font-poppins text-black text-base xl:text-2xl md:mt-4 border-black'>{items.price}</h5>
+            </div>
+          </div>
+          ))}
+
+        </div>
+
+         {/* <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
           <div  onClick={()=>navigate('/single-product')} className='cursor-pointer'>
             <img src={item1} alt='sofa' />
             <div>
@@ -188,7 +205,7 @@ const Shop: React.FC = () => {
             </div>
           </div>
 
-        </div>
+        </div> */}
         <div className='flex flex-row justify-center items-center gap-7'>
           <button className='font-light font-poppins text-black bg-[#FFF9E5] rounded-lg text-sm md:text-base lg:text-lg xl:text-xl mt-10 py-3 px-5 w-14 hover:bg-[#FBEBB5]'>1</button>
           <button className='font-light font-poppins text-black bg-[#FFF9E5] rounded-lg text-sm md:text-base lg:text-lg xl:text-xl mt-10 py-3 px-5 w-14 hover:bg-[#FBEBB5]'>2</button>

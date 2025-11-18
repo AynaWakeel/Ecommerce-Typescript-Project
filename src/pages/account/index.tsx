@@ -3,7 +3,7 @@ import cover from '../../assets/images/Rectangle 1.png'
 import arrow from '../../assets/icons/dashicons_arrow-down-alt2.svg'
 import logo from '../../assets/icons/Meubel House_Logos-05.svg'
 
-const MyAccount: React.FC = () => {
+const MyAccount = () => {
     return (
         <div>
 

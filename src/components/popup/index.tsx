@@ -15,7 +15,7 @@ const Popup: React.FC<Props> = ({ closePopup }) => {
       <div className='fixed inset-0 bg-black/40 z-40' onClick={closePopup}>
       </div>
 
-      <div className='w-1/4 h-auto py-5 px-4 bg-white fixed top-0 right-0 border border-2 shadow-xl z-50 '>
+      <div className='w-1/4 h-auto py-5 px-4 bg-white fixed top-0 right-0 border shadow-xl z-50 '>
         <div className='border border-b-[1px] border-x-0 border-t-0 border-gray-300 pb-4'>
           <div className='flex justify-between items-center'>
             <h3 className='text-2xl font-poppins font-medium text-black'>Shopping Cart</h3>

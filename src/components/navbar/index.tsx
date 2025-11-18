@@ -6,10 +6,10 @@ import search from '../../assets/icons/Vector (2).svg'
 import user from '../../assets/icons/Vector (3).svg'
 import menu from '../../assets/icons/fi_menu.svg'
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   const [isMenuOpen,setIsMenuOpen] = useState<boolean>(false)
   const navigate = useNavigate()
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
 useEffect(() => {
   const handleScroll = () => {

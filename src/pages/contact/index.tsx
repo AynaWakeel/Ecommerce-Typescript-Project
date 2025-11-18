@@ -7,7 +7,7 @@ import phone from '../../assets/icons/bxs_phone.svg'
 import clock from '../../assets/icons/bi_clock-fill.svg'
 
 
-const Contact: React.FC = () => {
+const Contact = () => {
   return (
     <div>
 

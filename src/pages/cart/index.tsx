@@ -6,7 +6,7 @@ import del from '../../assets/icons/ant-design_delete-filled.svg'
 import sofa from '../../assets/images/Asgaard sofa 1.png'
 import { useNavigate } from 'react-router'
 
-const Cart: React.FC = () => {
+const Cart = () => {
     const navigate = useNavigate()
     return (
         <div>

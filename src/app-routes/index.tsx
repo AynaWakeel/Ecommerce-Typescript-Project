@@ -10,10 +10,13 @@ import MyAccount from '../pages/account'
 import Checkout from '../pages/checkout'
 import SingleProduct from '../pages/single-product'
 import Cart from '../pages/cart'
+import ScrollToTop from '../components/scrollToTop'
 
-const AppRoutes: React.FC = () => {
+const AppRoutes = () => {
   return (
     <div>
+
+      <ScrollToTop/>
 
         <Navbar/>
 
@@ -22,7 +25,7 @@ const AppRoutes: React.FC = () => {
             <Route path='/' element={<Home/>}/>
             <Route path='/about' element={<About/>}/>
             <Route path='/shop' element={<Shop/>}/>
-            <Route path='/single-product' element={<SingleProduct/>}/>
+            <Route path='shop/single-product/:id' element={<SingleProduct/>}/>
             <Route path='/cart' element={<Cart/>}/>
             <Route path='/checkout' element={<Checkout/>}/>
             <Route path='/contact' element={<Contact/>}/>

@@ -18,10 +18,18 @@ import twitter from '../../assets/icons/ant-design_twitter-circle-filled.svg'
 import linkedin from '../../assets/icons/akar-icons_linkedin-box-fill.svg'
 import facebook from '../../assets/icons/akar-icons_facebook-fill.svg'
 import Popup from '../../components/popup'
+import { useParams } from 'react-router'
+import { products } from '../../data/products'
 
 
-const SingleProduct: React.FC = () => {
+const SingleProduct = () => {
+  const {id} = useParams()
   const [isOpen , setISOpen] = useState<boolean>(false)
+
+  const product = products.find(p => p.id === Number(id));
+
+  if (!product) return <h1>Product Not Found</h1>;
+
   return (
     <div>
 
@@ -42,28 +50,28 @@ const SingleProduct: React.FC = () => {
       <div className='flex flex-col lg:flex-row justify-between items-start gap-10 px-6 md:px-14 xl:px-40 py-8 lg:py-10 xl:py-16'>
         <div className='w-full lg:w-1/2 flex justify-start items-start gap-5'>
           <div className='flex flex-col justify-start items-center gap-4'>
-            <div className=' bg-[#FFF9E5] rounded-lg flex justify-center items-center'>
-              <img src={sofa1} alt='img' className='w-56 h-24' />
+            <div className=' bg-[#FFF9E5] w-32 h-24 rounded-lg flex justify-center items-center'>
+              <img src={sofa1} alt='img' className='w-4/5' />
             </div>
-            <div className=' bg-[#FFF9E5] rounded-lg flex justify-center items-center'>
-              <img src={sofa2} alt='img' className='w-56 h-24' />
+            <div className=' bg-[#FFF9E5] w-32 h-24 rounded-lg flex justify-center items-center'>
+              <img src={sofa2} alt='img' className='w-4/5' />
             </div>
-            <div className=' bg-[#FFF9E5] rounded-lg flex justify-center items-center'>
-              <img src={sofa3} alt='img' className='w-56 h-24' />
+            <div className=' bg-[#FFF9E5] w-32 h-24 rounded-lg flex justify-center items-center'>
+              <img src={sofa3} alt='img' className='w-4/5' />
             </div>
-            <div className=' bg-[#FFF9E5] rounded-lg flex justify-center items-center'>
-              <img src={sofa4} alt='img' className='w-56 h-24' />
+            <div className=' bg-[#FFF9E5] w-32 h-24 rounded-lg flex justify-center items-center'>
+              <img src={sofa4} alt='img' className='w-4/5' />
             </div>
 
           </div>
-          <div className=' bg-[#FFF9E5] h-[500px] rounded-lg flex justify-center items-center'>
-            <img src={sofa} alt='img' className='w-full' />
+          <div className=' bg-[#FFF9E5] w-[600px] h-[500px] rounded-lg flex justify-center items-center'>
+            <img src={product.image} alt='img' className='w-full' />
           </div>
         </div>
 
         <div className='w-full lg:w-1/2'>
-          <h2 className='font-poppins font-normal text-3xl xl:text-[42px] '>Asgaard sofa</h2>
-          <h4 className='font-poppins font-medium text-2xl text-[#9F9F9F] pt-4'>Rs. 250,000.00</h4>
+          <h2 className='font-poppins font-normal text-3xl xl:text-[42px] '>{product.name}</h2>
+          <h4 className='font-poppins font-medium text-2xl text-[#9F9F9F] pt-4'>{product.price}</h4>
           <div className='flex justify-start items-center gap-4 py-2'>
             <div className='flex justify-start items-center gap-2'>
               <img src={star} alt='img' className='' />
@@ -94,11 +102,11 @@ const SingleProduct: React.FC = () => {
           <div>
             <h6 className=' font-poppins font-normal text-[14px] text-[#9F9F9F] py-3'>Color</h6>
             <div className='flex justify-start items-center gap-4'>
-              <div className='bg-[#816DFA] active:border active:border-2 active:border-gray-800 rounded-full w-8 h-8 flex justify-center items-center'>
+              <div className='bg-[#816DFA] active:border active:border-gray-800 rounded-full w-8 h-8 flex justify-center items-center'>
               </div>
-              <div className='bg-black active:border active:border-2 active:border-gray-300 rounded-full w-8 h-8 flex justify-center items-center'>
+              <div className='bg-black active:border active:border-gray-300 rounded-full w-8 h-8 flex justify-center items-center'>
               </div>
-              <div className='bg-[#CDBA7B] active:border active:border-2 active:border-gray-800 rounded-full w-8 h-8 flex justify-center items-center'>
+              <div className='bg-[#CDBA7B] active:border active:border-gray-800 rounded-full w-8 h-8 flex justify-center items-center'>
               </div>
             </div>
           </div>

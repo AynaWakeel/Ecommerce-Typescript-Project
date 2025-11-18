@@ -16,7 +16,7 @@ import blog7 from '../../assets/images/Rectangle 69 (3).png'
 import blog8 from '../../assets/images/Rectangle 69 (4).png'
 
 
-const About: React.FC = () => {
+const About = () => {
   return (
     <div>
 
