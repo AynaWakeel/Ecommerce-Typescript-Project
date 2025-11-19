@@ -488,3 +488,13 @@ export default ShopItems
 ## ----------------------------------------- i've installed tailwindcss with
 
 npm install -D tailwindcss postcss autoprefixer
+
+# ---------------- Why we type id as a string by default?
+
+const { id } = useParams<{ id: string }>();
+
+useParams always returns route parameters as strings (or undefined if missing).
+
+Even if your URL looks like /user/123, the id you get is "123", not the number 123.
+
+So, TypeScript expects id: string. If you try to type it as number, TS will give an error because useParams cannot guarantee a number, it’s literally a string from the URL.

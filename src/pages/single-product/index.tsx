@@ -23,7 +23,7 @@ import { products } from '../../data/products'
 
 
 const SingleProduct = () => {
-  const {id} = useParams()
+  const {id} = useParams<{id:string}>();
   const [isOpen , setISOpen] = useState<boolean>(false)
 
   const product = products.find(p => p.id === Number(id));
