@@ -26,6 +26,10 @@ const SingleProduct = () => {
   const {id} = useParams<{id:string}>();
   const [isOpen , setISOpen] = useState<boolean>(false)
 
+  const [selectColor, setSelectColor] = useState<string>('')
+  const [selectSize, setSelectSize] = useState<string>()
+  const [quantity, setQuantity] = useState<number>()
+
   const product = products.find(p => p.id === Number(id));
 
   if (!product) return <h1>Product Not Found</h1>;
@@ -34,7 +38,9 @@ const SingleProduct = () => {
     <div>
 
       {isOpen && 
-      <Popup closePopup={()=>setISOpen(false)}/>
+      <Popup 
+      productData={product}
+      closePopup={()=>setISOpen(false)}/>
       }
 
       {/* ------------------ header ---------------- */}
@@ -74,11 +80,11 @@ const SingleProduct = () => {
           <h4 className='font-poppins font-medium text-2xl text-[#9F9F9F] pt-4'>{product.price}</h4>
           <div className='flex justify-start items-center gap-4 py-2'>
             <div className='flex justify-start items-center gap-2'>
-              <img src={star} alt='img' className='' />
-              <img src={star} alt='img' className='' />
-              <img src={star} alt='img' className='' />
-              <img src={star} alt='img' className='' />
-              <img src={halfstar} alt='img' className='' />
+              <img src={star} alt='img' />
+              <img src={star} alt='img' />
+              <img src={star} alt='img' />
+              <img src={star} alt='img' />
+              <img src={halfstar} alt='img' />
             </div>
             <h5 className=' font-poppins font-normal text-[13px] text-black px-4  border border-l-2 border-y-0 border-r-0 border-gray-400'>5 Customer Review</h5>
           </div>
@@ -87,27 +93,26 @@ const SingleProduct = () => {
           <div>
             <h6 className=' font-poppins font-normal text-[14px] text-[#9F9F9F] pb-3'>Size</h6>
             <div className='flex justify-start items-center gap-4'>
-              <div className='bg-[#FAF4F4] hover:bg-[#FBEBB5] active:bg-[#FAF4F4]  rounded-lg w-8 h-8 flex justify-center items-center'>
-                <span className=' font-poppins font-normal text-[13px] text-black'>L</span>
+              {["L","XL","XS"].map((size)=>(
+
+              <div key={size} onClick={()=>setSelectSize(size)} className={`bg-[#FAF4F4] hover:bg-[#FBEBB5] rounded-lg w-8 h-8 flex justify-center items-center cursor-pointer  ${selectSize === size ? "border border-zinc-600" : ""}` }>
+                <span className=' font-poppins font-normal text-[13px] text-black'>{size}</span>
               </div>
-              <div className='bg-[#FAF4F4] hover:bg-[#FBEBB5] active:bg-[#FAF4F4] rounded-lg w-8 h-8 flex justify-center items-center'>
-                <span className=' font-poppins font-normal text-[13px] text-black'>XL</span>
-              </div>
-              <div className='bg-[#FAF4F4] hover:bg-[#FBEBB5] active:bg-[#FAF4F4]  rounded-lg w-8 h-8 flex justify-center items-center'>
-                <span className=' font-poppins font-normal text-[13px] text-black'>XS</span>
-              </div>
+              ))}
+             
 
             </div>
           </div>
           <div>
             <h6 className=' font-poppins font-normal text-[14px] text-[#9F9F9F] py-3'>Color</h6>
             <div className='flex justify-start items-center gap-4'>
-              <div className='bg-[#816DFA] active:border active:border-gray-800 rounded-full w-8 h-8 flex justify-center items-center'>
+              {["#816DFA","#CDBA7B","#ffff"].map((color)=>(
+
+              <div key={color} onClick={()=>setSelectColor(color)} className={`bg-[${color}] border border-gray-400 rounded-full w-8 h-8 flex justify-center items-center ${selectColor === color ? "border border-gray-800" : ""}`}>
               </div>
-              <div className='bg-black active:border active:border-gray-300 rounded-full w-8 h-8 flex justify-center items-center'>
-              </div>
-              <div className='bg-[#CDBA7B] active:border active:border-gray-800 rounded-full w-8 h-8 flex justify-center items-center'>
-              </div>
+
+              ))}
+            
             </div>
           </div>
 

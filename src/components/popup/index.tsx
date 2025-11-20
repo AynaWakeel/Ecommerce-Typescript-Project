@@ -3,12 +3,14 @@ import sofa from '../../assets/images/Asgaard sofa 1.png'
 import bag from '../../assets/icons/shopping_bag.svg'
 import close from '../../assets/icons/cancel.svg'
 import { useNavigate } from 'react-router';
+import { Product } from '../../data/types';
 
 type Props = {
+  productData:Product
   closePopup: () => void;
 };
 
-const Popup: React.FC<Props> = ({ closePopup }) => {
+const Popup: React.FC<Props> = ({ productData, closePopup }) => {
   const navigate = useNavigate()
   return (
     <div>
@@ -27,15 +29,15 @@ const Popup: React.FC<Props> = ({ closePopup }) => {
           <div className='flex justify-between items-center '>
             <div className='flex justify-start items-center gap-4'>
               <div className='rounded-md bg-[#FBEBB5] h-auto w-28'>
-                <img src={sofa} alt='img' className='h-auto w-full' />
+                <img src={productData.image} alt='img' className='h-auto w-full' />
               </div>
               <div className='flex flex-col'>
                 <div>
-                  <span className='text-sm lg:text-base font-poppins font-normal text-[#9F9F9F] '>Asgaard sofa</span>
+                  <span className='text-sm lg:text-base font-poppins font-normal text-[#9F9F9F] '>{productData.name}</span>
                 </div>
                 <div className='flex justify-start gap-2'>
                   <span className='text-sm lg:text-base font-poppins font-normal text-black'>1 X</span>
-                  <span className='text-sm lg:text-base font-poppins font-normal text-[#B88E2F]'>Rs. 250,000.00</span>
+                  <span className='text-sm lg:text-base font-poppins font-normal text-[#B88E2F]'>Rs. {productData.price}</span>
                 </div>
               </div>
 
