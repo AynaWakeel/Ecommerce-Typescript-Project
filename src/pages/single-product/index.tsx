@@ -24,31 +24,50 @@ import { products } from '../../data/products'
 
 const SingleProduct = () => {
   const {id} = useParams<{id:string}>();
-  const [isOpen , setISOpen] = useState<boolean>(false)
-
   const size = ["L","XL","XS"]
   const color = ["#816dfa","#CDBA7B","#000"]
-
+  
   const [selectColor, setSelectColor] = useState<string>('')
   const [selectSize, setSelectSize] = useState<string>('')
   const [quantity, setQuantity] = useState<number>(1)
-
+  
   const product = products.find(p => p.id === Number(id));
 
+  const [cartItems, setCartItems] = useState<any[]>([])
+  const [isOpen , setISOpen] = useState<boolean>(false)
+
+  
   if (!product) return <h1>Product Not Found</h1>;
   
   const totalPrice = quantity * product.price;
+  
+  const addToCart = ()=>{
+    const newItem = {
+      id: product.id,
+      name: product.name,
+      image: product.image,
+      price: product.price,
+      color: selectColor,
+      size: selectSize,
+      quantity: quantity,
+      total: totalPrice
+
+    }
+    setCartItems((prev) => [...prev, newItem]);
+      setISOpen(true)
+  }
 
   return (
     <div>
 
       {isOpen && 
       <Popup 
-      productData={product}
-      productColor={selectColor}
-      productSize={selectSize}
-      productQuantity={quantity}
-      totalPrice={totalPrice}
+      items={cartItems}
+      // productData={product}
+      // productColor={selectColor}
+      // productSize={selectSize}
+      // productQuantity={quantity}
+      // totalPrice={totalPrice}
       closePopup={()=>setISOpen(false)}/>
       }
 
@@ -131,7 +150,7 @@ const SingleProduct = () => {
               <span className='text-sm lg:text-base font-poppins font-normal text-black '>{quantity}</span>
               <span className='text-sm lg:text-base font-poppins font-normal text-black cursor-pointer' onClick={()=>setQuantity(quantity+1)}>+</span>
             </div>
-            <button className='text-base lg:text-xl font-poppins font-normal text-black rounded-xl border-[1px] border-black h-14 w-44' onClick={()=>setISOpen(true)}>Add To Cart</button>
+            <button className='text-base lg:text-xl font-poppins font-normal text-black rounded-xl border-[1px] border-black h-14 w-44' onClick={addToCart}>Add To Cart</button>
           </div>
 
           <div className='mt-6 pt-10 border border-t-[1px] border-x-0 border-b-0 border-[#D9D9D9]'>

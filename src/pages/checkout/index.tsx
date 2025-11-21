@@ -6,15 +6,25 @@ import arrowdown from '../../assets/icons/dashicons_arrow-down-alt2 (1).svg'
 import circle from '../../assets/icons/Ellipse 1.svg'
 import { useLocation } from 'react-router'
 
-type checkoutState = {
-  productQuantity: number
-  totalPrice: number
+type CartItem = {
+  image: string;
+  name: string;
+  price: number;
+  quantity: number;
+  color: string;
+  size: string;
+  total: number;
+};
+
+type LocationState = {
+  items: CartItem[];
 };
 
 const Checkout = () => {
-    const location = useLocation() as {state:checkoutState}
-    const totalPrice = location.state.totalPrice;
-    const productQuantity = location.state.productQuantity || 1;
+    const location = useLocation() as {state:LocationState}
+    const items = location.state?.items ?? [];
+    // const totalPrice = location.state.totalPrice;
+    // const productQuantity = location.state.productQuantity || 1;
 
     return (
         <div>
@@ -113,16 +123,20 @@ const Checkout = () => {
                         <h3 className='text-lg lg:text-xl xl:text-2xl font-medium font-poppins'>Subtotal</h3>
                     </div>
 
+                    {items.map((items)=>(
+
                     <div className='flex justify-between pb-4'>
                         <div className='flex justify-start gap-2'>
-                            <span className='text-sm lg:text-base font-poppins font-normal text-[#9F9F9F] '>Asgaard sofa</span>
-                            <span className='text-sm lg:text-base font-poppins font-normal text-black'>X {productQuantity}</span>
+                            <span className='text-sm lg:text-base font-poppins font-normal text-[#9F9F9F] '>{items.name}</span>
+                            <span className='text-sm lg:text-base font-poppins font-normal text-black'>X {items.quantity}</span>
                         </div>
-                        <span className='text-sm lg:text-base font-poppins font-light text-black '>Rs. {totalPrice}</span>
+                        <span className='text-sm lg:text-base font-poppins font-light text-black '>Rs. {items.total}</span>
                     </div>
+                    ))}
+
                     <div className='flex justify-between pb-4'>
                         <h4 className='text-sm lg:text-base font-poppins font-normal text-black'>Subtotal</h4>
-                        <p className='text-sm lg:text-base font-poppins font-light text-black'>Rs. {totalPrice}</p>
+                        <p className='text-sm lg:text-base font-poppins font-light text-black'>Rs. 456780</p>
                     </div>
                     <div className='flex justify-between pb-6'>
                         <h4 className='text-sm lg:text-base font-poppins font-normal text-black'>Total</h4>
