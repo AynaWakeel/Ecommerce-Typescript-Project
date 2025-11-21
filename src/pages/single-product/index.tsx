@@ -26,13 +26,18 @@ const SingleProduct = () => {
   const {id} = useParams<{id:string}>();
   const [isOpen , setISOpen] = useState<boolean>(false)
 
+  const size = ["L","XL","XS"]
+  const color = ["#816dfa","#CDBA7B","#000"]
+
   const [selectColor, setSelectColor] = useState<string>('')
-  const [selectSize, setSelectSize] = useState<string>()
-  const [quantity, setQuantity] = useState<number>()
+  const [selectSize, setSelectSize] = useState<string>('')
+  const [quantity, setQuantity] = useState<number>(1)
 
   const product = products.find(p => p.id === Number(id));
 
   if (!product) return <h1>Product Not Found</h1>;
+  
+  const totalPrice = quantity * product.price;
 
   return (
     <div>
@@ -40,6 +45,10 @@ const SingleProduct = () => {
       {isOpen && 
       <Popup 
       productData={product}
+      productColor={selectColor}
+      productSize={selectSize}
+      productQuantity={quantity}
+      totalPrice={totalPrice}
       closePopup={()=>setISOpen(false)}/>
       }
 
@@ -93,7 +102,7 @@ const SingleProduct = () => {
           <div>
             <h6 className=' font-poppins font-normal text-[14px] text-[#9F9F9F] pb-3'>Size</h6>
             <div className='flex justify-start items-center gap-4'>
-              {["L","XL","XS"].map((size)=>(
+              {size.map((size)=>(
 
               <div key={size} onClick={()=>setSelectSize(size)} className={`bg-[#FAF4F4] hover:bg-[#FBEBB5] rounded-lg w-8 h-8 flex justify-center items-center cursor-pointer  ${selectSize === size ? "border border-zinc-600" : ""}` }>
                 <span className=' font-poppins font-normal text-[13px] text-black'>{size}</span>
@@ -106,9 +115,9 @@ const SingleProduct = () => {
           <div>
             <h6 className=' font-poppins font-normal text-[14px] text-[#9F9F9F] py-3'>Color</h6>
             <div className='flex justify-start items-center gap-4'>
-              {["#816DFA","#CDBA7B","#ffff"].map((color)=>(
+              {color.map((color)=>(
 
-              <div key={color} onClick={()=>setSelectColor(color)} className={`bg-[${color}] border border-gray-400 rounded-full w-8 h-8 flex justify-center items-center ${selectColor === color ? "border border-gray-800" : ""}`}>
+              <div key={color} onClick={()=>setSelectColor(color)} style={{ backgroundColor: color }} className={` border border-gray-400 rounded-full w-8 h-8 flex justify-center items-center ${selectColor === color ? "border border-gray-800" : ""}`}>
               </div>
 
               ))}
@@ -118,14 +127,15 @@ const SingleProduct = () => {
 
           <div className='flex justify-start items-center gap-6 py-4'>
             <div className='rounded-md h-14 w-28 border-[1px] border-[#9F9F9F] flex justify-center items-center gap-6'>
-              <span className='text-sm lg:text-base font-poppins font-normal text-black '>-</span>
-              <span className='text-sm lg:text-base font-poppins font-normal text-black '>1</span>
-              <span className='text-sm lg:text-base font-poppins font-normal text-black '>+</span>
+              <span className='text-sm lg:text-base font-poppins font-normal text-black cursor-pointer' onClick={()=>quantity > 1 && setQuantity(quantity-1)}>-</span>
+              <span className='text-sm lg:text-base font-poppins font-normal text-black '>{quantity}</span>
+              <span className='text-sm lg:text-base font-poppins font-normal text-black cursor-pointer' onClick={()=>setQuantity(quantity+1)}>+</span>
             </div>
             <button className='text-base lg:text-xl font-poppins font-normal text-black rounded-xl border-[1px] border-black h-14 w-44' onClick={()=>setISOpen(true)}>Add To Cart</button>
           </div>
 
           <div className='mt-6 pt-10 border border-t-[1px] border-x-0 border-b-0 border-[#D9D9D9]'>
+            <h4>Subtotal: {quantity} * {product.price} = {totalPrice}</h4>
             <div className='flex justify-start items-center gap-4 py-1'>
               <h6 className='font-poppins font-normal text-base text-[#9F9F9F] w-24'>SKU</h6>
               <h6 className='font-poppins font-normal text-base text-[#9F9F9F]'>: SS001</h6>

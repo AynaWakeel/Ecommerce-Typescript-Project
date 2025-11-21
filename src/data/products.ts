@@ -20,97 +20,97 @@ export const products:Product[] = [
     {
         id:1,
         name:'Trenton modular sofa_3',
-        price:250000,
+        price:25000,
         image:item1
     },
     {
         id:2,
-        name:'Trenton modular sofa_3',
-        price:250000,
+        name:'Granite dining table with dining chair',
+        price:25000,
         image:item2
     },
     {
         id:3,
-        name:'Trenton modular sofa_3',
-        price:250000,
+        name:'Outdoor bar table and stool',
+        price:25000,
         image:item3
     },
     {
         id:4,
-        name:'Trenton modular sofa_3',
-        price:250000,
+        name:'Plain console with teak mirror',
+        price:22500,
         image:item4
     },
     {
         id:5,
-        name:'Trenton modular sofa_3',
-        price:250000,
+        name:'Grain coffee table',
+        price:25100,
         image:item15
     },
     {
         id:6,
-        name:'Trenton modular sofa_3',
+        name:'Kent coffee table',
         price:250000,
         image:item9
     },
     {
         id:7,
-        name:'Trenton modular sofa_3',
-        price:250000,
+        name:'Round coffee table_color 2',
+        price:115000,
         image:item11
     },
     {
         id:8,
-        name:'Trenton modular sofa_3',
-        price:250000,
+        name:'Reclaimed teak coffee table',
+        price:250500,
         image:item6
     },
     {
         id:9,
-        name:'Trenton modular sofa_3',
-        price:250000,
+        name:'Plain console_',
+        price:251000,
         image:item5
     },
     {
         id:10,
-        name:'Trenton modular sofa_3',
-        price:250000,
+        name:'Reclaimed teak Sideboard',
+        price:258600,
         image:item12
     },
     {
         id:11,
-        name:'Trenton modular sofa_3',
-        price:250000,
+        name:'SJP_0825',
+        price:220000,
         image:item14
     },
     {
         id:12,
-        name:'Trenton modular sofa_3',
-        price:250000,
+        name:'Bella chair and table',
+        price:200000,
         image:item16
     },
     {
         id:13,
-        name:'Trenton modular sofa_3',
-        price:250000,
+        name:'Granite square side table',
+        price:100000,
         image:item13
     },
     {
         id:14,
-        name:'Trenton modular sofa_3',
-        price:250000,
+        name:'Asgaard sofa',
+        price:258000,
         image:item10
     },
     {
         id:15,
-        name:'Trenton modular sofa_3',
-        price:250000,
+        name:'Maya sofa three seater',
+        price:115000,
         image:item7
     },
     {
         id:16,
-        name:'Trenton modular sofa_3',
-        price:250000,
+        name:'Outdoor sofa set',
+        price:244000,
         image:item8
     }
 ]

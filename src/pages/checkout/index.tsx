@@ -4,8 +4,18 @@ import logo from '../../assets/icons/Meubel House_Logos-05.svg'
 import arrow from '../../assets/icons/dashicons_arrow-down-alt2.svg'
 import arrowdown from '../../assets/icons/dashicons_arrow-down-alt2 (1).svg'
 import circle from '../../assets/icons/Ellipse 1.svg'
+import { useLocation } from 'react-router'
 
-const Checkout: React.FC = () => {
+type checkoutState = {
+  productQuantity: number
+  totalPrice: number
+};
+
+const Checkout = () => {
+    const location = useLocation() as {state:checkoutState}
+    const totalPrice = location.state.totalPrice;
+    const productQuantity = location.state.productQuantity || 1;
+
     return (
         <div>
 
@@ -106,13 +116,13 @@ const Checkout: React.FC = () => {
                     <div className='flex justify-between pb-4'>
                         <div className='flex justify-start gap-2'>
                             <span className='text-sm lg:text-base font-poppins font-normal text-[#9F9F9F] '>Asgaard sofa</span>
-                            <span className='text-sm lg:text-base font-poppins font-normal text-black'>X 1</span>
+                            <span className='text-sm lg:text-base font-poppins font-normal text-black'>X {productQuantity}</span>
                         </div>
-                        <span className='text-sm lg:text-base font-poppins font-light text-black '>Rs. 250,000.00</span>
+                        <span className='text-sm lg:text-base font-poppins font-light text-black '>Rs. {totalPrice}</span>
                     </div>
                     <div className='flex justify-between pb-4'>
                         <h4 className='text-sm lg:text-base font-poppins font-normal text-black'>Subtotal</h4>
-                        <p className='text-sm lg:text-base font-poppins font-light text-black'>Rs. 250,000.00</p>
+                        <p className='text-sm lg:text-base font-poppins font-light text-black'>Rs. {totalPrice}</p>
                     </div>
                     <div className='flex justify-between pb-6'>
                         <h4 className='text-sm lg:text-base font-poppins font-normal text-black'>Total</h4>

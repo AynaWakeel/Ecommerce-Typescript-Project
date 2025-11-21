@@ -6,11 +6,15 @@ import { useNavigate } from 'react-router';
 import { Product } from '../../data/types';
 
 type Props = {
-  productData:Product
+  productData: Product
+  productSize: string
+  productColor: string
+  productQuantity: number
+  totalPrice: number
   closePopup: () => void;
 };
 
-const Popup: React.FC<Props> = ({ productData, closePopup }) => {
+const Popup: React.FC<Props> = ({ productData, productSize, productColor, productQuantity, totalPrice, closePopup }) => {
   const navigate = useNavigate()
   return (
     <div>
@@ -25,19 +29,38 @@ const Popup: React.FC<Props> = ({ productData, closePopup }) => {
           </div>
         </div>
         <div className='h-96 py-4'>
-           {/*  ------------ per item in cart ---------- */}
+          {/*  ------------ per item in cart ---------- */}
           <div className='flex justify-between items-center '>
-            <div className='flex justify-start items-center gap-4'>
-              <div className='rounded-md bg-[#FBEBB5] h-auto w-28'>
+            <div className='flex justify-start items-start gap-4'>
+              <div className='rounded-md bg-[#FBEBB5] h-32 w-28'>
                 <img src={productData.image} alt='img' className='h-auto w-full' />
               </div>
               <div className='flex flex-col'>
                 <div>
                   <span className='text-sm lg:text-base font-poppins font-normal text-[#9F9F9F] '>{productData.name}</span>
                 </div>
-                <div className='flex justify-start gap-2'>
-                  <span className='text-sm lg:text-base font-poppins font-normal text-black'>1 X</span>
+
+                  <div className='flex justify-start gap-2'>
+                  <span className='text-sm lg:text-base font-poppins font-normal text-black'>{productQuantity} X</span>
                   <span className='text-sm lg:text-base font-poppins font-normal text-[#B88E2F]'>Rs. {productData.price}</span>
+                </div>
+
+                <div className='flex justify-start gap-8'>
+                  <div className='flex justify-start gap-2'>
+                    <span className='text-sm lg:text-base font-poppins font-normal text-black'>Color:</span>
+                    <div style={{ backgroundColor: productColor }} className={` border border-gray-400 rounded-full w-6 h-6 flex justify-center items-center `}>
+                    </div>
+                  <div className='flex justify-start gap-2'>
+                    <span className='text-sm lg:text-base font-poppins font-normal text-black'>Size:</span>
+                    <span className='text-sm lg:text-base font-poppins font-normal text-black'>{productSize}</span>
+                  </div>
+                  </div>
+
+                </div>
+              
+                <div className='flex justify-start gap-2'>
+                  <span className='text-sm lg:text-base font-poppins font-normal text-black'>Total:</span>
+                  <span className='text-sm lg:text-base font-poppins font-normal text-[#B88E2F]'>Rs. {totalPrice}</span>
                 </div>
               </div>
 
@@ -52,11 +75,11 @@ const Popup: React.FC<Props> = ({ productData, closePopup }) => {
 
         <div className='flex justify-between py-3'>
           <h4 className='text-sm lg:text-base font-poppins font-normal text-black text-justify'>Subtotal</h4>
-          <p className='text-base md:text-lg lg:text-xl font-poppins font-bold text-[#B88E2F]'>Rs. 250,000.00</p>
+          <p className='text-base md:text-lg lg:text-xl font-poppins font-bold text-[#B88E2F]'>Rs. {totalPrice}</p>
         </div>
         <div className='flex justify-start items-center gap-14 border border-t-[1px] border-x-0 border-b-0 border-gray-300 pt-4'>
-          <button className='text-sm font-poppins font-normal text-black rounded-3xl border-[1px] border-black py-2 px-4' onClick={()=>navigate('/cart')}>View Cart</button>
-          <button className='text-sm font-poppins font-normal text-black rounded-3xl border-[1px] border-black py-2 px-4' onClick={()=>navigate('/checkout')}>Checkout</button>
+          <button className='text-sm font-poppins font-normal text-black rounded-3xl border-[1px] border-black py-2 px-4' onClick={() => navigate(`/cart/${productData.id}`,{  state: {productQuantity,totalPrice}})}>View Cart</button>
+          <button className='text-sm font-poppins font-normal text-black rounded-3xl border-[1px] border-black py-2 px-4' onClick={() => navigate('/checkout')}>Checkout</button>
         </div>
 
       </div>
