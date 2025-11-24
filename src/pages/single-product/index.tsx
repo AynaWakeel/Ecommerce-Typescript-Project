@@ -18,14 +18,14 @@ import twitter from '../../assets/icons/ant-design_twitter-circle-filled.svg'
 import linkedin from '../../assets/icons/akar-icons_linkedin-box-fill.svg'
 import facebook from '../../assets/icons/akar-icons_facebook-fill.svg'
 import Popup from '../../components/popup'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { products } from '../../data/products'
+import { cartItem, getItem, saveItem } from '../../data/cart'
 
 
 const SingleProduct = () => {
+  const navigate = useNavigate()
   const {id} = useParams<{id:string}>();
-  const size = ["L","XL","XS"]
-  const color = ["#816dfa","#CDBA7B","#000"]
   
   const [selectColor, setSelectColor] = useState<string>('')
   const [selectSize, setSelectSize] = useState<string>('')
@@ -42,7 +42,13 @@ const SingleProduct = () => {
   const totalPrice = quantity * product.price;
   
   const addToCart = ()=>{
-    const newItem = {
+
+    if (!selectSize || !selectColor) {
+    alert("Please select size and color before adding to cart.");
+    return; 
+  }
+
+    const newItem:cartItem = {
       id: product.id,
       name: product.name,
       image: product.image,
@@ -50,11 +56,15 @@ const SingleProduct = () => {
       color: selectColor,
       size: selectSize,
       quantity: quantity,
-      total: totalPrice
+      subtotal: totalPrice
 
     }
-    setCartItems((prev) => [...prev, newItem]);
-      setISOpen(true)
+
+    const currentCart = getItem()
+    const updatedcart = [...currentCart,newItem]
+    saveItem(updatedcart)
+    setCartItems(updatedcart)
+    setISOpen(true)
   }
 
   return (
@@ -63,11 +73,6 @@ const SingleProduct = () => {
       {isOpen && 
       <Popup 
       items={cartItems}
-      // productData={product}
-      // productColor={selectColor}
-      // productSize={selectSize}
-      // productQuantity={quantity}
-      // totalPrice={totalPrice}
       closePopup={()=>setISOpen(false)}/>
       }
 
@@ -83,22 +88,17 @@ const SingleProduct = () => {
       {/* ---------------- 1st sec ------------------- */}
       <div className='flex flex-col lg:flex-row justify-between items-start gap-10 px-6 md:px-14 xl:px-40 py-8 lg:py-10 xl:py-16'>
         <div className='w-full lg:w-1/2 flex justify-start items-start gap-5'>
-          <div className='flex flex-col justify-start items-center gap-4'>
+          <div className='flex flex-col justify-start items-center gap-4 '>
+            {[...products].sort(() => Math.random() - 0.5).slice(0,4).map((item)=>(
+
             <div className=' bg-[#FFF9E5] w-32 h-24 rounded-lg flex justify-center items-center'>
-              <img src={sofa1} alt='img' className='w-4/5' />
-            </div>
-            <div className=' bg-[#FFF9E5] w-32 h-24 rounded-lg flex justify-center items-center'>
-              <img src={sofa2} alt='img' className='w-4/5' />
-            </div>
-            <div className=' bg-[#FFF9E5] w-32 h-24 rounded-lg flex justify-center items-center'>
-              <img src={sofa3} alt='img' className='w-4/5' />
-            </div>
-            <div className=' bg-[#FFF9E5] w-32 h-24 rounded-lg flex justify-center items-center'>
-              <img src={sofa4} alt='img' className='w-4/5' />
+              <img src={item.image} alt='img' className='w-4/5' />
             </div>
 
+            ))}         
+
           </div>
-          <div className=' bg-[#FFF9E5] w-[600px] h-[500px] rounded-lg flex justify-center items-center'>
+          <div className=' bg-[#FFF9E5] md:w-[600px] h-[400px] md:h-[500px] rounded-lg flex justify-center items-center w-3/4'>
             <img src={product.image} alt='img' className='w-full' />
           </div>
         </div>
@@ -116,12 +116,12 @@ const SingleProduct = () => {
             </div>
             <h5 className=' font-poppins font-normal text-[13px] text-black px-4  border border-l-2 border-y-0 border-r-0 border-gray-400'>5 Customer Review</h5>
           </div>
-          <p className=' font-poppins font-normal text-[13px] text-black py-3 xl:w-9/12 text-justify'>Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound.
+          <p className=' font-poppins font-normal text-[13px] text-black py-3 xl:w-9/12 text-justify'>{product.desc}
           </p>
           <div>
             <h6 className=' font-poppins font-normal text-[14px] text-[#9F9F9F] pb-3'>Size</h6>
             <div className='flex justify-start items-center gap-4'>
-              {size.map((size)=>(
+              {product.size.map((size)=>(
 
               <div key={size} onClick={()=>setSelectSize(size)} className={`bg-[#FAF4F4] hover:bg-[#FBEBB5] rounded-lg w-8 h-8 flex justify-center items-center cursor-pointer  ${selectSize === size ? "border border-zinc-600" : ""}` }>
                 <span className=' font-poppins font-normal text-[13px] text-black'>{size}</span>
@@ -134,7 +134,7 @@ const SingleProduct = () => {
           <div>
             <h6 className=' font-poppins font-normal text-[14px] text-[#9F9F9F] py-3'>Color</h6>
             <div className='flex justify-start items-center gap-4'>
-              {color.map((color)=>(
+              {product.color.map((color)=>(
 
               <div key={color} onClick={()=>setSelectColor(color)} style={{ backgroundColor: color }} className={` border border-gray-400 rounded-full w-8 h-8 flex justify-center items-center ${selectColor === color ? "border border-gray-800" : ""}`}>
               </div>
@@ -154,14 +154,13 @@ const SingleProduct = () => {
           </div>
 
           <div className='mt-6 pt-10 border border-t-[1px] border-x-0 border-b-0 border-[#D9D9D9]'>
-            <h4>Subtotal: {quantity} * {product.price} = {totalPrice}</h4>
             <div className='flex justify-start items-center gap-4 py-1'>
               <h6 className='font-poppins font-normal text-base text-[#9F9F9F] w-24'>SKU</h6>
-              <h6 className='font-poppins font-normal text-base text-[#9F9F9F]'>: SS001</h6>
+              <h6 className='font-poppins font-normal text-base text-[#9F9F9F]'>: {product.SKU}</h6>
             </div>
              <div className='flex justify-start items-center gap-4 py-1'>
               <h6 className='font-poppins font-normal text-base text-[#9F9F9F] w-24'>Category</h6>
-              <h6 className='font-poppins font-normal text-base text-[#9F9F9F]'>: Sofas</h6>
+              <h6 className='font-poppins font-normal text-base text-[#9F9F9F]'>: {product.categoty}</h6>
             </div>
              <div className='flex justify-start items-center gap-4 py-1'>
               <h6 className='font-poppins font-normal text-base text-[#9F9F9F] w-24'>Tags</h6>
@@ -193,12 +192,12 @@ const SingleProduct = () => {
           <p className='font-poppins font-normal text-sm md:text-base text-[#9F9F9F] text-justify pb-4'>Embodying the raw, wayward spirit of rock ‘n’ roll, the Kilburn portable active stereo speaker takes the unmistakable look and sound of Marshall, unplugs the chords, and takes the show on the road.</p>
           <p className='font-poppins font-normal text-sm md:text-base text-[#9F9F9F] text-justify'>Weighing in under 7 pounds, the Kilburn is a lightweight piece of vintage styled engineering. Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound that is both articulate and pronounced. The analogue knobs allow you to fine tune the controls to your personal preferences while the guitar-influenced leather strap enables easy and stylish travel.</p>
         </div>
-        <div className='flex flex-col lg:flex-row justify-between items-center gap-4'>
-          <div className='bg-[#FFF9E5] lg:w-1/2 lg:h-80'>
-            <img src={item5} alt='sofa' className='h-auto w-full' />
+        <div className='flex flex-row justify-center items-center gap-4 w-full'>
+          <div className='bg-[#FFF9E5] lg:w-1/2 lg:h-80 flex justify-center items-center'>
+            <img src={product.image} alt='sofa' className='h-auto w-3/4' />
           </div>
-          <div className='bg-[#FFF9E5] lg:w-1/2 lg:h-80'>
-            <img src={item6} alt='sofa' className='h-auto w-full' />
+          <div className='bg-[#FFF9E5] lg:w-1/2 lg:h-80 flex justify-center items-center'>
+            <img src={product.image} alt='sofa' className='h-auto w-3/4' />
           </div>
 
         </div>
@@ -213,38 +212,22 @@ const SingleProduct = () => {
           <p className='text-xs md:text-sm lg:text-base font-poppins font-medium text-gray-400 pt-3'>Find a bright ideal to suit your taste with our great selection of suspension, floor and table lights.</p>
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-          <div>
-            <img src={item1} alt='sofa' />
-            <div className=''>
-              <h6 className='text-base font-poppins font-normal '>Trenton modular sofa_3</h6>
-              <h5 className='font-medium font-poppins text-black text-base xl:text-2xl md:mt-4 border-black'>Rs. 25,000.00</h5>
+          {[...products].sort(() => Math.random() - 0.5).slice(0,4).map((items)=>(
+
+          <div className='cursor-pointer h-96 flex flex-col justify-center items-start' onClick={()=>navigate(`/single-product/${items.id}`)}>
+            <div className='h-72 flex justify-center items-center'>
+              <img src={items.image} alt='sofa' className='w-full h-auto'/>
+            </div>
+            <div>
+              <h6 className='text-base font-poppins font-normal w-52 line-clamp-2'>{items.name}</h6>
+              <h5 className='font-medium font-poppins text-black text-base xl:text-2xl md:mt-4 border-black'>{items.price}</h5>
             </div>
           </div>
-          <div>
-            <img src={item2} alt='sofa' />
-            <div className=''>
-              <h6 className='text-base font-poppins font-normal '>Trenton modular sofa_3</h6>
-              <h5 className='font-medium font-poppins text-black text-base xl:text-2xl md:mt-4 border-black'>Rs. 25,000.00</h5>
-            </div>
-          </div>
-          <div>
-            <img src={item3} alt='sofa' />
-            <div className=''>
-              <h6 className='text-base font-poppins font-normal '>Trenton modular sofa_3</h6>
-              <h5 className='font-medium font-poppins text-black text-base xl:text-2xl md:mt-4 border-black'>Rs. 25,000.00</h5>
-            </div>
-          </div>
-          <div>
-            <img src={item4} alt='sofa' />
-            <div className=''>
-              <h6 className='text-base font-poppins font-normal '>Trenton modular sofa_3</h6>
-              <h5 className='font-medium font-poppins text-black text-base xl:text-2xl md:mt-4 border-black'>Rs. 25,000.00</h5>
-            </div>
-          </div>
+          ))}            
 
         </div>
         <div>
-          <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-xl mt-10 md:pb-2 border-b-2 border-black'>View More</button>
+          <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-xl mt-10 md:pb-2 border-b-2 border-black' onClick={()=>navigate('/shop')}>View More</button>
         </div>
       </div>
 

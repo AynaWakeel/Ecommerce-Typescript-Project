@@ -14,6 +14,7 @@ import coverImg from '../../assets/images/Group 43.png'
 import calender from '../../assets/icons/uil_calender.svg'
 import clock from '../../assets/icons/Group.svg'
 import { useNavigate } from 'react-router'
+import { products } from '../../data/products'
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
@@ -25,7 +26,7 @@ const Home: React.FC = () => {
       <div className='flex justify-between items-center bg-[#FBEBB5] px-6 md:px-14 xl:px-40 pb-5 pt-24 lg:pt-20'>
         <div>
           <h1 className='text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-poppins font-medium '>Rocket single seater</h1>
-          <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-lg 2xl:text-2xl mt-4 md:mt-6 xl:mt-10 pb-2 border-b-2 border-black outline-none' onClick={()=>navigate('/shop')}>Shop Now</button>
+          <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-lg 2xl:text-2xl mt-4 md:mt-6 xl:mt-10 pb-2 border-b-2 border-black outline-none' onClick={() => navigate('/shop')}>Shop Now</button>
         </div>
         <div className='max-md:hidden max-sm:hidden md:w-2/4 lg:w-1/2'>
           <img src={Sofa} alt='sofa' />
@@ -39,14 +40,14 @@ const Home: React.FC = () => {
           <img src={Table} alt='sofa' className='w-4/5' />
           <div className='absolute bottom-0 lg:bottom-3xl xl:bottom-8'>
             <h1 className='text-xl md:text-2xl lg:text-4xl font-poppins font-medium '>Side Table</h1>
-            <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl md:mt-4 md:pb-2 border-b-2 border-black outline-none'  onClick={()=>navigate('/shop')}>View More</button>
+            <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl md:mt-4 md:pb-2 border-b-2 border-black outline-none' onClick={() => navigate('/shop')}>View More</button>
           </div>
         </div>
         <div className='relative'>
           <img src={CloudSofa} alt='sofa' className='w-4/5' />
           <div className='absolute bottom-0 lg:bottom-3 xl:bottom-8'>
             <h1 className='text-xl md:text-2xl lg:text-4xl font-poppins font-medium '>Side Table</h1>
-            <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl md:mt-4 md:pb-2 border-b-2 border-black outline-none'  onClick={()=>navigate('/shop')}>View More</button>
+            <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl md:mt-4 md:pb-2 border-b-2 border-black outline-none' onClick={() => navigate('/shop')}>View More</button>
           </div>
         </div>
       </div>
@@ -59,43 +60,27 @@ const Home: React.FC = () => {
           <p className='text-xs md:text-sm lg:text-base font-poppins font-medium text-gray-400 pt-3'>Find a bright ideal to suit your taste with our great selection of suspension, floor and table lights.</p>
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-          <div>
-            <img src={item1} alt='sofa' />
-            <div className=''>
-              <h6 className='text-base font-poppins font-normal '>Trenton modular sofa_3</h6>
-              <h5 className='font-medium font-poppins text-black text-base xl:text-2xl md:mt-4 border-black'>Rs. 25,000.00</h5>
+          {products.slice(0,4).map((items) => (
+
+            <div className='cursor-pointer h-96 flex flex-col justify-center items-start' onClick={() => navigate('shop')}>
+              <div className='h-72 flex justify-center items-center'>
+                <img src={items.image} alt='sofa' className='w-full h-auto' />
+              </div>
+              <div>
+                <h6 className='text-base font-poppins font-normal w-52 line-clamp-2'>{items.name}</h6>
+                <h5 className='font-medium font-poppins text-black text-base xl:text-2xl md:mt-4 border-black'>{items.price}</h5>
+              </div>
             </div>
-          </div>
-          <div>
-            <img src={item2} alt='sofa' />
-            <div className=''>
-              <h6 className='text-base font-poppins font-normal '>Trenton modular sofa_3</h6>
-              <h5 className='font-medium font-poppins text-black text-base xl:text-2xl md:mt-4 border-black'>Rs. 25,000.00</h5>
-            </div>
-          </div>
-          <div>
-            <img src={item3} alt='sofa' />
-            <div className=''>
-              <h6 className='text-base font-poppins font-normal '>Trenton modular sofa_3</h6>
-              <h5 className='font-medium font-poppins text-black text-base xl:text-2xl md:mt-4 border-black'>Rs. 25,000.00</h5>
-            </div>
-          </div>
-          <div>
-            <img src={item4} alt='sofa' />
-            <div className=''>
-              <h6 className='text-base font-poppins font-normal '>Trenton modular sofa_3</h6>
-              <h5 className='font-medium font-poppins text-black text-base xl:text-2xl md:mt-4 border-black'>Rs. 25,000.00</h5>
-            </div>
-          </div>
+          ))}         
 
         </div>
         <div>
-          <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-xl mt-10 md:pb-2 border-b-2 border-black' onClick={()=>navigate('/shop')}>View More</button>
+          <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-xl mt-10 md:pb-2 border-b-2 border-black' onClick={() => navigate('/shop')}>View More</button>
         </div>
       </div>
 
       {/* ---------- 4th sec --------------- */}
-     
+
       <div className='flex justify-center items-center gap-12 lg:gap-14 xl:gap-16 bg-[#FFF9E5] px-6 md:px-14 xl:px-20 py-8 lg:py-0'>
         <div className='max-md:hidden max-sm:hidden md:w-2/4 lg:w-1/2'>
           <img src={Sofaset} alt='sofa' />
@@ -103,42 +88,25 @@ const Home: React.FC = () => {
         <div className='text-center'>
           <h1 className='text-base lg:text-lg xl:text-2xl font-poppins font-medium '>New Arrivals</h1>
           <h1 className='text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-poppins font-bold '>Asgaard sofa</h1>
-          <button className='font-normal font-poppins text-black text-sm md:text-base lg:text-lg xl:text-xl mt-4 md:mt-6 xl:mt-10 py-2 px-10 border-2 border-black' onClick={()=>navigate('/shop')}>Order Now</button>
+          <button className='font-normal font-poppins text-black text-sm md:text-base lg:text-lg xl:text-xl mt-4 md:mt-6 xl:mt-10 py-2 px-10 border-2 border-black' onClick={() => navigate('/shop')}>Order Now</button>
         </div>
       </div>
 
       {/* ----------- 5th sec ------------ */}
 
-       <div className='flex flex-col justify-between items-center gap-4 lg:gap-10 px-6 md:px-14 xl:px-40 py-8 lg:py-10 xl:py-16'>
+      <div className='flex flex-col justify-between items-center gap-4 lg:gap-10 px-6 md:px-14 xl:px-40 py-8 lg:py-10 xl:py-16'>
 
         <div className=' text-center'>
           <h1 className='text-xl md:text-2xl lg:text-4xl font-poppins font-medium'>Our Blogs</h1>
           <p className='text-xs md:text-sm lg:text-base font-poppins font-medium text-gray-400 pt-3'>Find a bright ideal to suit your taste with our great selection</p>
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-         
-           <div>
+
+          <div>
             <img src={blog1} alt='sofa' />
             <div className='text-center pt-4'>
               <h6 className='text-base font-poppins font-normal text-black'>Going all-in with millennial design</h6>
-               <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl mt-2 pb-2 border-b-2 border-black outline-none' onClick={()=>navigate('/about')}>Read More</button>
-               <div className='flex justify-center items-center gap-3 pt-5'>
-                <div className='flex items-center gap-2'>
-                  <img src={clock} alt='icon' />
-                  <h6 className='font-light font-poppins text-black text-xs md:text-sm lg:text-base'>5 min</h6>
-                </div>
-                <div className='flex items-center gap-2'>
-                  <img src={calender} alt='icon' />
-                  <h6 className='font-light font-poppins text-black text-xs md:text-sm lg:text-base'>12th Oct 2022</h6>
-                </div>
-               </div>
-            </div>
-          </div>
-         <div>
-            <img src={blog2} alt='sofa' />
-            <div className='text-center pt-4'>
-              <h6 className='text-base font-poppins font-normal text-black'>Going all-in with millennial design</h6>
-              <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl mt-2  pb-2 border-b-2 border-black outline-none'  onClick={()=>navigate('/about')}>Read More</button>
+              <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl mt-2 pb-2 border-b-2 border-black outline-none' onClick={() => navigate('/about')}>Read More</button>
               <div className='flex justify-center items-center gap-3 pt-5'>
                 <div className='flex items-center gap-2'>
                   <img src={clock} alt='icon' />
@@ -148,14 +116,31 @@ const Home: React.FC = () => {
                   <img src={calender} alt='icon' />
                   <h6 className='font-light font-poppins text-black text-xs md:text-sm lg:text-base'>12th Oct 2022</h6>
                 </div>
-               </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <img src={blog2} alt='sofa' />
+            <div className='text-center pt-4'>
+              <h6 className='text-base font-poppins font-normal text-black'>Going all-in with millennial design</h6>
+              <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl mt-2  pb-2 border-b-2 border-black outline-none' onClick={() => navigate('/about')}>Read More</button>
+              <div className='flex justify-center items-center gap-3 pt-5'>
+                <div className='flex items-center gap-2'>
+                  <img src={clock} alt='icon' />
+                  <h6 className='font-light font-poppins text-black text-xs md:text-sm lg:text-base'>5 min</h6>
+                </div>
+                <div className='flex items-center gap-2'>
+                  <img src={calender} alt='icon' />
+                  <h6 className='font-light font-poppins text-black text-xs md:text-sm lg:text-base'>12th Oct 2022</h6>
+                </div>
+              </div>
             </div>
           </div>
           <div>
             <img src={blog3} alt='sofa' />
             <div className='text-center pt-4'>
               <h6 className='text-base font-poppins font-normal text-black'>Going all-in with millennial design</h6>
-              <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl mt-2 pb-2 border-b-2 border-black outline-none' onClick={()=>navigate('/about')}>Read More</button>
+              <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-2xl mt-2 pb-2 border-b-2 border-black outline-none' onClick={() => navigate('/about')}>Read More</button>
               <div className='flex justify-center items-center gap-3 pt-5'>
                 <div className='flex items-center gap-2'>
                   <img src={clock} alt='icon' />
@@ -165,20 +150,20 @@ const Home: React.FC = () => {
                   <img src={calender} alt='icon' />
                   <h6 className='font-light font-poppins text-black text-xs md:text-sm lg:text-base'>12th Oct 2022</h6>
                 </div>
-               </div>
+              </div>
             </div>
           </div>
 
         </div>
         <div>
-          <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-xl mt-10 md:pb-2 border-b-2 border-black outline-none' onClick={()=>navigate('/about')}>View All Post</button>
+          <button className='font-medium font-poppins text-black text-sm md:text-base lg:text-lg xl:text-xl mt-10 md:pb-2 border-b-2 border-black outline-none' onClick={() => navigate('/about')}>View All Post</button>
         </div>
       </div>
 
       {/* ---------- 6th sec ------------- */}
       <div className='relative'>
-        <img src={coverImg} alt='cover' className='h-52 md:h-auto w-full'/>
-         <div className='text-center absolute inset-0 flex flex-col justify-center items-center'>
+        <img src={coverImg} alt='cover' className='h-52 md:h-auto w-full' />
+        <div className='text-center absolute inset-0 flex flex-col justify-center items-center'>
           <h1 className='text-2xl lg:text-4xl xl:text-5xl font-poppins font-bold '>Our Instagram</h1>
           <h1 className='text-xs md:text-base xl:text-xl font-poppins font-normal pt-2'>Follow our store on Instagram</h1>
           <button className='text-xs md:text-sm lg:text-base xl:text-xl font-poppins font-normal mt-1 md:mt-6 xl:mt-10 py-2 px-10 rounded-3xl bg-stone-50 shadow-md shadow-stone-200'>Follow Us</button>

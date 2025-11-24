@@ -3,35 +3,14 @@ import cover from '../../assets/images/Rectangle 1.png'
 import logo from '../../assets/icons/Meubel House_Logos-05.svg'
 import arrow from '../../assets/icons/dashicons_arrow-down-alt2.svg'
 import del from '../../assets/icons/ant-design_delete-filled.svg'
-import { useLocation, useNavigate, useParams } from 'react-router'
-// import { products } from '../../data/products'
-
-type CartItem = {
-  image: string;
-  name: string;
-  price: number;
-  quantity: number;
-  color: string;
-  size: string;
-  total: number;
-};
-
-type LocationState = {
-  items: CartItem[];
-};
+import { useNavigate } from 'react-router'
+import { cartItem, getItem, removeItem } from '../../data/cart'
 
 const Cart: React.FC = () => {
+    const items: cartItem[] = getItem();
     const navigate = useNavigate()
-    const location = useLocation() as {state:LocationState}
-    const items = location.state?.items ?? [];
-    // const totalPrice = location.state.totalPrice;
-    // const productQuantity = location.state.productQuantity || 1;
+    const grandTotal = items.reduce((sum,item)=> sum + item.subtotal, 0)
 
-    //  const {id} = useParams<{id:string}>();
-    
-    //   const product = products.find(p => p.id === Number(id));
-    
-    //   if (!product) return <h1>Product Not Found</h1>;
     return (
         <div>
 
@@ -66,7 +45,7 @@ const Cart: React.FC = () => {
                         </thead>
 
                         <tbody className='pt-4'>
-                            {items.map((items)=>(
+                            {items.map((items,index)=>(
 
                             <tr>
                                 <td>
@@ -75,7 +54,7 @@ const Cart: React.FC = () => {
                                     </div>
                                 </td>
                                 <td>
-                                <span className='text-sm lg:text-base font-poppins font-normal text-[#9F9F9F]'>{items.name}</span>
+                                <span className='text-sm lg:text-base font-poppins font-normal text-[#9F9F9F] w-40 line-clamp-2'>{items.name}</span>
                                 </td>
                                 <td>
                                 <span className='text-sm lg:text-base font-poppins font-normal text-[#9F9F9F]'>Rs. {items.price}</span>
@@ -86,10 +65,10 @@ const Cart: React.FC = () => {
                                     </div>
                                 </td>
                                 <td>
-                                    <p className='text-sm lg:text-base font-poppins font-normal text-black'>Rs. {items.total}</p>
+                                    <p className='text-sm lg:text-base font-poppins font-normal text-black'>Rs. {items.subtotal}</p>
                                 </td>
                                 <td>
-                                    <img src={del} alt='del' />
+                                    <img src={del} alt='del' onClick={()=>{removeItem(index); window.location.reload();}} />
                                 </td>
                             </tr>
                             ))}
@@ -103,13 +82,16 @@ const Cart: React.FC = () => {
 
                 <div className='bg-[#FFF9E5] py-8 px-6 xl:px-10 w-full md:w-1/2  xl:w-1/3 text-center mt-3'>
                     <h2 className='text-xl lg:text-2xl xl:text-3xl font-semibold font-poppins pb-10'>Cart Totals</h2>
+                    {items.map((items)=>(
+
                     <div className='flex justify-between pb-4'>
                         <h4 className='text-sm lg:text-base font-poppins font-normal text-black text-justify'>Subtotal</h4>
-                        {/* <p className='text-sm lg:text-base font-poppins font-normal text-black text-justify'>Rs. {totalPrice}</p> */}
+                        <p className='text-sm lg:text-base font-poppins font-normal text-black text-justify'>Rs. {items.subtotal}</p>
                     </div>
+                    ))}
                     <div className='flex justify-between pb-6'>
                         <h4 className='text-sm lg:text-base font-poppins font-normal text-black text-justify'>Total</h4>
-                        <p className='text-lg lg:text-xl font-poppins font-medium text-[#B88E2F] text-justify'>Rs. 457889</p>
+                        <p className='text-lg lg:text-xl font-poppins font-medium text-[#B88E2F] text-justify'>Rs. {grandTotal}</p>
                     </div>
                     <button className='text-base lg:text-xl font-poppins font-normal text-black rounded-xl border-[1px] border-black h-12 w-36' onClick={()=>navigate('/checkout',{state:{items}})}>Check Out</button>
 

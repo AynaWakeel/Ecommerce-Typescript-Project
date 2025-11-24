@@ -2,8 +2,40 @@ import React from 'react'
 import cover from '../../assets/images/Rectangle 1.png'
 import arrow from '../../assets/icons/dashicons_arrow-down-alt2.svg'
 import logo from '../../assets/icons/Meubel House_Logos-05.svg'
+import { useForm } from 'react-hook-form';
+
+interface Login {
+    email: string;
+    password: string;
+}
+
+interface SignUp {
+    email: string;
+}
 
 const MyAccount = () => {
+    const {
+        register:loginRegister,
+        handleSubmit:handleLogin,
+        // formState: { errors }
+    } = useForm<Login>()
+
+    const LoginForm = (data: Login) => {
+        console.log(data);
+         alert("Logged in!")
+    }
+
+    const {
+        register:signupRegister,
+        handleSubmit:handleRegister,
+        // formState: { errors }
+    } = useForm<SignUp>()
+
+    const RegisterForm = (data: SignUp) => {
+        console.log(data);
+        alert("You are now Registerd.")
+    }
+
     return (
         <div>
 
@@ -23,42 +55,54 @@ const MyAccount = () => {
 
             {/* ---------------- form --------------- */}
             <div className=' px-6 md:px-14 xl:px-40 py-8 lg:py-10 flex flex-col lg:flex-row justify-between items-start gap-20'>
+
                 <div className='w-full lg:w-1/2'>
-                    <h2 className='text-2xl lg:text-3xl xl:text-4xl font-semibold font-poppins pb-8'>Log In</h2>
-                    <div className='pb-5 lg:pb-10'>
-                        <label htmlFor="" className='text-sm lg:text-base font-medium font-poppins pb-4 block'>Username or email address</label>
-                        <input type='text' className='h-14 w-full xl:w-3/4 px-5 rounded-xl border-[1px] border-[#9F9F9F] outline-none'/>
-                    </div>
-                     <div className='pb-5 lg:pb-8'>
-                        <label htmlFor="" className='text-sm lg:text-base font-medium font-poppins pb-4 block'>Password</label>
-                        <input type='text' className='h-14 w-full xl:w-3/4 px-5 rounded-xl border-[1px] border-[#9F9F9F] outline-none'/>
-                    </div>
-                    <div className='pb-5 lg:pb-10 flex justify-start gap-4'>
-                        <input type='checkbox' className='w-8'/>
-                        <label htmlFor="" className='text-sm lg:text-base font-medium font-poppinsblock'>Remember Me</label>
+                    <form onSubmit={handleLogin(LoginForm)}>
+                        <h2 className='text-2xl lg:text-3xl xl:text-4xl font-semibold font-poppins pb-8'>Log In</h2>
+                        <div className='pb-5 lg:pb-10'>
+                            <label htmlFor="" className='text-sm lg:text-base font-medium font-poppins pb-4 block'>Username or email address</label>
+                            <input type='email' className='h-14 w-full xl:w-3/4 px-5 rounded-xl border-[1px] border-[#9F9F9F] outline-none'
+                                {...loginRegister('email', { required: true })} />
+                        </div>
+                        <div className='pb-5 lg:pb-8'>
+                            <label htmlFor="" className='text-sm lg:text-base font-medium font-poppins pb-4 block'>Password</label>
+                            <input type='text' className='h-14 w-full xl:w-3/4 px-5 rounded-xl border-[1px] border-[#9F9F9F] outline-none'
+                                {...loginRegister('password', { required: true })} />
+                        </div>
+                        <div className='pb-5 lg:pb-10 flex justify-start gap-4'>
+                            <input type='checkbox' className='w-8' />
+                            <label htmlFor="" className='text-sm lg:text-base font-medium font-poppinsblock'>Remember Me</label>
 
-                    </div>
-                    <div className='flex justify-between lg:justify-start items-center gap-5 lg:gap-20'>
-                        <button className='text-base lg:text-xl font-poppins font-normal text-black rounded-xl border-[1px] border-black h-14 w-44'>Log In</button>
-                        <span className='text-sm lg:text-base font-poppins font-light text-black'>Lost Your Password?</span>
-                    </div>
+                        </div>
+                        <div className='flex justify-between lg:justify-start items-center gap-5 lg:gap-20'>
+                            <button type='submit' className='text-base lg:text-xl font-poppins font-normal text-black rounded-xl border-[1px] border-black h-14 w-44'>Log In</button>
+                            <span className='text-sm lg:text-base font-poppins font-light text-black'>Lost Your Password?</span>
+                        </div>
+                    </form>
                 </div>
-                 <div className='w-full lg:w-1/2'>
-                    <h2 className='text-2xl lg:text-3xl xl:text-4xl font-semibold font-poppins pb-8'>Register</h2>
-                    <div  className='pb-5 lg:pb-10'>
-                        <label htmlFor="" className='text-sm lg:text-base font-medium font-poppins pb-4 block'>Email address</label>
-                        <input type='text' className='h-14 w-full xl:w-3/4 px-5 rounded-xl border-[1px] border-[#9F9F9F] outline-none'/>
-                    </div>
-                    <div className='pb-5 lg:pb-10'>
-                        <p className='text-sm lg:text-base font-poppins font-light text-black w-full xl:w-4/5 text-justify pb-2'>A link to set a new password will be sent to your email address.</p>
-                        <p className='text-sm lg:text-base font-poppins font-light text-black w-full xl:w-4/5 text-justify'>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our 
-                        <span className='text-sm lg:text-base font-poppins font-semibold'> privacy policy.</span>
-                        </p>
-                    </div>
 
-                    <button className='text-base lg:text-xl font-poppins font-normal text-black rounded-xl border-[1px] border-black h-14 w-44'>Register</button>
 
+
+                <div className='w-full lg:w-1/2'>
+                    <form onSubmit={handleRegister(RegisterForm)}>
+                        <h2 className='text-2xl lg:text-3xl xl:text-4xl font-semibold font-poppins pb-8'>Register</h2>
+                        <div className='pb-5 lg:pb-10'>
+                            <label htmlFor="" className='text-sm lg:text-base font-medium font-poppins pb-4 block'>Email address</label>
+                            <input type='email' className='h-14 w-full xl:w-3/4 px-5 rounded-xl border-[1px] border-[#9F9F9F] outline-none'
+                                {...signupRegister('email', { required: true })} />
+                        </div>
+                        <div className='pb-5 lg:pb-10'>
+                            <p className='text-sm lg:text-base font-poppins font-light text-black w-full xl:w-4/5 text-justify pb-2'>A link to set a new password will be sent to your email address.</p>
+                            <p className='text-sm lg:text-base font-poppins font-light text-black w-full xl:w-4/5 text-justify'>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our
+                                <span className='text-sm lg:text-base font-poppins font-semibold'> privacy policy.</span>
+                            </p>
+                        </div>
+
+                        <button type='submit' className='text-base lg:text-xl font-poppins font-normal text-black rounded-xl border-[1px] border-black h-14 w-44'>Register</button>
+
+                    </form>
                 </div>
+
             </div>
 
 
